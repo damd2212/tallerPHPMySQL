@@ -7,7 +7,7 @@
     );
 
     if (isset($conn)) {
-        echo 'La BD chinook esta conectada';
+        
     }
 
 ?>
