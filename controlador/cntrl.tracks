@@ -1,7 +1,7 @@
 <?php
 require ('servicios/clsServiceTrack.php');
 require ('servicios/clsServiceGenre.php');
-require ('servicios/clsServiceMediaType.php')
+require ('servicios/clsServiceMediaType.php');
 
 class controladorTracks {
     //atributos

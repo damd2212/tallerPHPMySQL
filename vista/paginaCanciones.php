@@ -36,7 +36,7 @@
                         <option selected>Seleccione una opcion</option>
                         <?php
                         
-                        foreach( $this->ServiceMediaType->Listar() as $objMedia){
+                        foreach( $this->ServiceMedia->Listar() as $objMedia){
                             echo '<option value="'.$objMedia->MediaTypeId.'">'.$objMedia->Name.'</option>';
                         }
                         ?>
