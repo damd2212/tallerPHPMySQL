@@ -1,0 +1,18 @@
+<?php
+
+require ('servicios/clsServicePlaylist.php');
+
+class controladorPlaylist{
+    //atributos
+    private $ServicePlaylist;
+
+    //metodos
+    public function __construct(){
+        $this->ServicePlaylist = new clsServicePlaylist();
+    }
+
+    public function Listar(){
+        require_once 'vista/paginaPlaylist.php';
+    }
+
+}
