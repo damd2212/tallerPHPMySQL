@@ -9,29 +9,10 @@
 
 </head>
 <body>
-    <br>
-    <div class="card" style="width: 20rem; margin-left: auto;margin-right: auto">
-        <h5 style="text-align:center ;"> Registrar Playlist</h5>
-
-        <div style="text-align: center;" class="card-body">
-            <form action="guadar_cancion.php" method="POST">
-                <div class="form-group">
-                    <label for="lidPlaylist">Id Playlist</label>
-                    <input type="number" class="form-control" id="PlaylistId" name="PlaylistId"
-                        placeholder="Ingrese el id de la playlist" />
-                </div>
-
-                <div class="form-group">
-                    <label for="lName">Nombre de la playlist</label>
-                    <input type="text" class="form-control" id="Name" name="Name"
-                        placeholder="Ingrese el nombre de la playlist" />
-                </div>
-
-                <br>
-                <button type="submit" class="btn btn-primary">Guardar Playlist</button>
-            </form>
-        </div>
-    </div>
+    
+    <h5>
+        <a href="?c=playlist&a=Formulario">Nueva Playlist</a>
+    </h5>
     <br>
     <div class="card" style="width: 50rem; margin-left: auto;margin-right: auto">
         <table class="table table-hover">

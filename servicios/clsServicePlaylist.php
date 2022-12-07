@@ -1,7 +1,7 @@
 <?php
 
-require_once 'modelo/clsPlaylist.php';
-require_once 'modelo/conexion_db.php';
+require_once '../modelo/clsPlaylist.php';
+require_once '../modelo/conexion_db.php';
 
 class clsServicePlaylist{
     //atributos
@@ -30,4 +30,14 @@ class clsServicePlaylist{
         return $resultado;
     }
 
+    public function obtener($PlaylistId){
+        $consulta = $this->auxPlay->prepare ("SELECT * FROM Playlist WHERE PlaylistId=?");
+        $consulta->execute(array($PlaylistId));
+        $auxPlaylist = new clsPlaylist();
+        foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj) {
+                $auxPlaylist->auxPlay->__set('PlaylistId', $obj->PlaylistId);
+                $auxPlaylist->auxPlay->__set('Name', $obj->Name);
+            }
+        return $auxPlaylist;
+    }
 }

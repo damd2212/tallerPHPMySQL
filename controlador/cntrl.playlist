@@ -1,8 +1,9 @@
 <?php
 
-require ('servicios/clsServicePlaylist.php');
+require ('../servicios/clsServicePlaylist.php');
+//require ('../modelo/clsPlaylist.php');
 
-class controladorPlaylist{
+class controladorPlaylist {
     //atributos
     private $ServicePlaylist;
 
@@ -12,7 +13,15 @@ class controladorPlaylist{
     }
 
     public function Listar(){
-        require_once 'vista/paginaPlaylist.php';
+        require_once '../vista/paginaPlaylist.php';
+    }
+
+    public function Formulario(){
+        $obj = new clsPlaylist();
+        if(isset($_REQUEST['PlaylistId'])){
+            $obj = $this->ServicePlaylist->Obtener($_REQUEST['PlaylistId']);
+        }
+        require_once '../vista/FormularioPlaylist.php';
     }
 
 }
