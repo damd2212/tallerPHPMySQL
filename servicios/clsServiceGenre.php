@@ -18,9 +18,16 @@ class clsServiceGenre{
 
     //Creación de servicio
     public function Listar() {
-            $query = "SELECT * FROM genre";
-            $resultado = mysqli_query($this->auxCon, $query);
-            return $resultado;
+        $query = $this->auxCon->prepare("SELECT * FROM genre");
+        $query->execute();
+        $resultado = array();
+        foreach($query->fetchAll(PDO::FETCH_OBJ) as $obj){
+            $this->auxCon = new clsGenre();
+            $this->auxCon->__set('GenreId', $obj->GenreId);
+            $this->auxCon->__set('Name', $obj->Name);
+            $resultado[] = $this->auxCon;
+        }
+        return $resultado;
     }
 
 }

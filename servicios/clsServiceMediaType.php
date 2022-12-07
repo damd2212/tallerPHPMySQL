@@ -3,23 +3,30 @@
 require_once 'modelo/clsMediaType.php';
 require_once 'modelo/conexion_db.php';
 
-class clsServiceGenre{
+class clsServiceMediaType{
     //atributos
     private $conexion;
-    private $auxCon;
+    private $auxMedia;
 
     //metodos
     public function __construct()
     {
         $this->conexion = new conexion_db("localhost","chinook","root"," ");
         $this->conexion->conectar();
-        $this->auxCon = $this->conexion->conexion;
+        $this->auxMedia = $this->conexion->conexion;
     }
 
-    //Creación de servicio
+
     public function Listar() {
-            $query = "SELECT * FROM MediaType";
-            $resultado = mysqli_query($this->auxCon, $query);
-            return $resultado;
+        $query = $this->auxMedia->prepare("SELECT * FROM MediaType");
+        $query->execute();
+        $resultado = array();
+        foreach($query->fetchAll(PDO::FETCH_OBJ) as $obj){
+            $this->auxMedia = new clsMediaType();
+            $this->auxMedia->__set('MediaTypeId', $obj->MediaTypeId);
+            $this->auxMedia->__set('Name', $obj->Name);
+            $resultado[] = $this->auxMedia;
+        }
+        return $resultado;
     }
 }

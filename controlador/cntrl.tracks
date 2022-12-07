@@ -1,17 +1,19 @@
 <?php
 require ('servicios/clsServiceTrack.php');
 require ('servicios/clsServiceGenre.php');
+require ('servicios/clsServiceMediaType.php')
 
 class controladorTracks {
     //atributos
     private $ServiceTracks;
     private $ServiceGenre;
-    private $ServiceMediaType;
+    private $ServiceMedia;
 
     //métodos
     public function __construct(){
         $this->ServiceTracks = new clsServiceTrack();
         $this->ServiceGenre = new clsServiceGenre();
+        $this->ServiceMedia = new clsServiceMediaType();
 
     }
 

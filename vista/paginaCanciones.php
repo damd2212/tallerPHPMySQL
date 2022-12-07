@@ -35,11 +35,10 @@
                     <select class="form-select" id="MediaTypeId">
                         <option selected>Seleccione una opcion</option>
                         <?php
-                        /* $query = "SELECT * FROM  MediaType";
-                        $resultado = mysqli_query($conn, $query);
-                        while ($valores = mysqli_fetch_array($resultado)) {
-                            echo '<option value="'.$valores['MediaTypeId'].'">'.$valores['Name'].'</option>';
-                        } */
+                        
+                        foreach( $this->ServiceMediaType->Listar() as $objMedia){
+                            echo '<option value="'.$objMedia->MediaTypeId.'">'.$objMedia->Name.'</option>';
+                        }
                         ?>
                     </select>
                 </div>
@@ -49,11 +48,9 @@
                     <select class="form-select" id="GenreId">
                         <option selected>Seleccione una opcion</option>
                         <?php
-                        /* $query = "SELECT * FROM  genre";
-                        $resultado = mysqli_query($conn, $query);
-                        while ($valores = mysqli_fetch_array($resultado)) {
-                            echo '<option value="'.$valores['GenreId'].'">'.$valores['Name'].'</option>';
-                        } */
+                        foreach( $this->ServiceGenre->Listar() as $objGenre){
+                          echo '<option value="'.$objGenre->GenreId.'">'.$objGenre->Name.'</option>';
+                        }
                         ?>
                     </select>
                 </div>
