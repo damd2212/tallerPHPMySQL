@@ -17,11 +17,44 @@ class controladorPlaylist {
     }
 
     public function Formulario(){
+        require_once '../vista/FormularioPlaylist.php';
+    }
+
+    public function FormularioUpdate(){
         $obj = new clsPlaylist();
+
         if(isset($_REQUEST['PlaylistId'])){
             $obj = $this->ServicePlaylist->Obtener($_REQUEST['PlaylistId']);
         }
-        require_once '../vista/FormularioPlaylist.php';
+
+        require_once '../vista/FormEditarPlaylist.php';
+    }
+
+    public function Guardar(){
+        $obj = new clsPlaylist();
+        $obj->PlaylistId = $_REQUEST['PlaylistId'];
+        $obj->Name = $_REQUEST['Name'];
+
+        $this->ServicePlaylist->Crear($obj);
+        
+        header("Location: cntrlGeneral.php?c=playlist&a=Listar"); 
+    }
+
+     public function Actualizar(){
+        $obj = new clsPlaylist();
+        $obj->PlaylistId = $_REQUEST['PlaylistId'];
+        $obj->Name = $_REQUEST['Name'];
+
+        
+        $this->ServicePlaylist->Actualizar($obj);
+        
+        
+        header("Location: cntrlGeneral.php?c=playlist&a=Listar"); 
+    }
+
+    public function Eliminar(){
+        $this->ServicePlaylist->Eliminar($_REQUEST['PlaylistId']);
+        header('Location: cntrlGeneral.php?c=playlist&a=Listar');
     }
 
 }
