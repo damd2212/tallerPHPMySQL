@@ -1,0 +1,22 @@
+<?php
+require ('servicios/clsServiceTrack.php');
+require ('servicios/clsServiceGenre.php');
+
+class controladorTracks {
+    //atributos
+    private $ServiceTracks;
+    private $ServiceGenre;
+    private $ServiceMediaType;
+
+    //métodos
+    public function __construct(){
+        $this->ServiceTracks = new clsServiceTrack();
+        $this->ServiceGenre = new clsServiceGenre();
+
+    }
+
+    public function Listar(){
+        require_once 'vista/paginaCanciones.php';
+    }
+
+}
