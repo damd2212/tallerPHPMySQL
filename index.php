@@ -1,2 +1,2 @@
 <?php
-require ('controlador/cntrlGeneral.php');
+require ('vista/inicioSesion.php');

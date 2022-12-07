@@ -1,7 +1,7 @@
 <?php
 
-require_once 'modelo/clsTracks.php';
-require_once 'modelo/conexion_db.php';
+require_once '../modelo/clsTracks.php';
+require_once '../modelo/conexion_db.php';
 
 class clsServiceTrack{
     //atributos
@@ -17,7 +17,8 @@ class clsServiceTrack{
     }
 
     public function Listar() {
-        $consulta = $this->auxTrack->prepare("SELECT * FROM track");
+        $CustomerId = $_SESSION['CustomerId'];
+        $consulta = $this->auxTrack->prepare("SELECT tr.Name, tr.Composer, tr.Milliseconds, tr.UnitPrice FROM customer cus, invoice inv, invoiceline invl, track tr WHERE cus.CustomerId = inv.CustomerId AND inv.InvoiceId = invl.InvoiceId AND invl.TrackId = tr.TrackId AND cus.CustomerId = ".$CustomerId);
         $consulta->execute();
         $resultado = array();
         foreach($consulta->fetchAll(PDO::FETCH_OBJ) as $obj){
