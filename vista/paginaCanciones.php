@@ -50,7 +50,6 @@
           <tbody>
             <?php foreach ($this->ServiceTracks->Listar() as $objTrack) : ?>
               <tr>
-              <td><?php echo $objTrack->TrackId ?></td>
                 <td><?php echo $objTrack->Name ?></td>
                 <td><?php echo $objTrack->Composer ?></td>
                 <td><?php echo $objTrack->Milliseconds ?></td>
