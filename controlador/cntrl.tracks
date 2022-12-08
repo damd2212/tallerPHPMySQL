@@ -22,6 +22,11 @@ class controladorTracks {
         $this->ServiceTracks->Comprar($_REQUEST['Id']);
         header('Location: cntrlGeneral.php?c=tracks&a=Listar');
     }
+
+    public function Eliminar(){
+        $this->ServiceTracks->EliminarCompra($_REQUEST['Id']);
+        header('Location: cntrlGeneral.php?c=tracks&a=Listar');
+    }
     
 
 }

@@ -62,7 +62,7 @@
                 <td><?php echo $objTrack->Milliseconds ?></td>
                 <td><?php echo $objTrack->UnitPrice ?></td>
                 <td><a href="?c=tracks&a=Listar&Id=<?php echo $objTrack->TrackId;?>"><img src="../imagenes/music.png">Agregar a PlayList</a></td>
-                <td><a href="?c=tracks&a=Listar&Id=<?php echo $objTrack->TrackId;?>"><img src="../imagenes/delete.png">Eliminar</a></td>
+                <td><a href="?c=tracks&a=Eliminar&Id=<?php echo $objTrack->TrackId;?>"><img src="../imagenes/delete.png">Eliminar</a></td>
               </tr>
             <?php endforeach ?>
           </tbody>

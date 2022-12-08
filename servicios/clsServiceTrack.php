@@ -1,5 +1,7 @@
 <?php
 
+use LDAP\Result;
+
 require_once '../modelo/clsTracks.php';
 require_once '../modelo/conexion_db.php';
 
@@ -103,6 +105,22 @@ class clsServiceTrack{
             ));
         }else{
             echo "Id_track no encontrado";
+        }
+    }
+
+    public function EliminarCompra($idTrack){
+        $CustomerId = $_SESSION['CustomerId'];
+        $consulta = $this->auxTrack->prepare("SELECT invl.InvoiceLineId FROM customer cus, invoice inv, invoiceline invl WHERE cus.CustomerId = inv.CustomerId AND inv.InvoiceId = invl.InvoiceId AND invl.TrackId = ? AND cus.CustomerId = ?");
+        $consulta->execute(array(
+            $idTrack,
+            $CustomerId
+        ));
+        $delete = $consulta->fetch(PDO::FETCH_ASSOC);
+        try {
+            $consulta = $this->auxTrack->prepare("DELETE FROM invoiceline WHERE InvoiceLineId=?");
+            $consulta->execute(array($delete['InvoiceLineId']));
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
     }
 
