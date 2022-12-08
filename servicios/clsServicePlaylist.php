@@ -3,6 +3,7 @@
 require_once '../modelo/clsPlaylist.php';
 require_once '../modelo/conexion_db.php';
 require_once '../modelo/clsPlaylistTrack.php';
+require_once '../modelo/clsConteoPT.php';
 
 class clsServicePlaylist{
     //atributos
@@ -100,6 +101,29 @@ class clsServicePlaylist{
 
             return $resultado;
 
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function ConteoPT(){
+        try {
+            $consulta = $this->auxPlay->prepare("SELECT pl.name, COUNT(pt.trackid) as total 
+                FROM playlist pl, playlisttrack pt 
+                WHERE pl.playlistid = pt.playlistid 
+                GROUP BY pl.name");
+            $consulta->execute();
+
+            $resultado = array();
+
+            foreach ($consulta->fetchAll(PDO::FETCH_OBJ) as $obj) {
+                $this->auxPlay = new clsConteoPT();
+                $this->auxPlay->__set('PlaylistName', $obj->name);
+                $this->auxPlay->__set('total', $obj->total);
+                $resultado[] = $this->auxPlay;
+            }
+
+            return $resultado;
         } catch (Exception $e) {
             die($e->getMessage());
         }
