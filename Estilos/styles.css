@@ -1,0 +1,46 @@
+#inicioSesion {
+  width: 100%;
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
+  background-image: url("../imagenes/fondo2.jpg");
+  background-size: 100%;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+}
+
+.login {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  padding: 20px;
+  margin: -150px 0 0 -150px;
+  width: 500px;
+  height: 360px;
+  background-color: #3C1B31;
+  border-radius: 0.5em;
+}
+.login h1 {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+#TituloSesion {
+  text-align: center;
+  color: #fff;
+  font-family: Arial;
+  font-size: medium;
+}
+
+#labels {
+    text-align: center;
+    color: #fff;
+    font-family: Arial;
+    font-style: italic;
+    font-size: small;
+  }
+
+
+
+
+
