@@ -2,6 +2,7 @@
 
 require_once '../modelo/clsPlaylist.php';
 require_once '../modelo/conexion_db.php';
+require_once '../modelo/clsPlaylistTrack.php';
 
 class clsServicePlaylist{
     //atributos
@@ -73,4 +74,36 @@ class clsServicePlaylist{
             die($e->getMessage());
         }
     }
+
+    public function ListaPlaylistTrack(){
+        $customerId = $_SESSION['CustomerId'];
+        try {
+            
+            $consulta = $this->auxPlay->prepare("SELECT DISTINCT t.Name AS cancion, p.Name AS 'playlist' FROM customer c, invoice i, invoiceline il, track t, playlisttrack pt, playlist p
+                WHERE c.CustomerId = i.CustomerId
+                AND i.InvoiceId = il.InvoiceId
+                AND il.TrackId = t.TrackId
+                AND pt.TrackId = t.TrackId
+                AND p.PlaylistId = pt.PlaylistId
+                AND c.CustomerId=?
+                ORDER BY p.Name");
+            $consulta->execute(array($customerId));
+
+            $resultado = array();
+
+            foreach ($consulta->fetchAll(PDO::FETCH_OBJ) as $obj) {
+                $this->auxPlay = new clsPlaylistTrack();
+                $this->auxPlay->__set('TrackName', $obj->cancion);
+                $this->auxPlay->__set('PlaylistName', $obj->playlist);
+                $resultado[] = $this->auxPlay;
+            }
+
+            return $resultado;
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+
 }

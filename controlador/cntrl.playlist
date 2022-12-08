@@ -44,17 +44,17 @@ class controladorPlaylist {
         $obj = new clsPlaylist();
         $obj->PlaylistId = $_REQUEST['PlaylistId'];
         $obj->Name = $_REQUEST['Name'];
-
-        
         $this->ServicePlaylist->Actualizar($obj);
-        
-        
         header("Location: cntrlGeneral.php?c=playlist&a=Listar"); 
     }
 
     public function Eliminar(){
         $this->ServicePlaylist->Eliminar($_REQUEST['PlaylistId']);
         header('Location: cntrlGeneral.php?c=playlist&a=Listar');
+    }
+
+    public function ListarPlaylistTrack(){
+        require_once '../vista/paginaPlaylistTrack.php';
     }
 
 }
