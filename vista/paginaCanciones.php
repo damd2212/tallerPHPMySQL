@@ -29,7 +29,13 @@
           <a class="nav-link" href="?c=playlist&a=Listar">Playlist</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="?c=playlist&a=ListarPlaylistTrack">Playlist con canciones</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="?c=tracks&a=ListarNoCompradas">Comprar canción</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="?c=playlist&a=Conteo">Conteo Canciones por Playlist</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
