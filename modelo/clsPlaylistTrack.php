@@ -3,7 +3,9 @@
 
 class clsPlaylistTrack {
     //atributos
+    private $TrackId;
     private $PlaylistName;
+    private $PlaylistId;
     private $TrackName;
 
     //métodos

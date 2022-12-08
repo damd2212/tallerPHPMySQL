@@ -81,7 +81,7 @@ class clsServicePlaylist{
         $customerId = $_SESSION['CustomerId'];
         try {
             
-            $consulta = $this->auxPlay->prepare("SELECT DISTINCT t.Name AS cancion, p.Name AS 'playlist' FROM customer c, invoice i, invoiceline il, track t, playlisttrack pt, playlist p
+            $consulta = $this->auxPlay->prepare("SELECT DISTINCT t.TrackId ,t.Name AS cancion, p.PlaylistId,p.Name AS 'playlist' FROM customer c, invoice i, invoiceline il, track t, playlisttrack pt, playlist p
                 WHERE c.CustomerId = i.CustomerId
                 AND i.InvoiceId = il.InvoiceId
                 AND il.TrackId = t.TrackId
@@ -95,8 +95,10 @@ class clsServicePlaylist{
 
             foreach ($consulta->fetchAll(PDO::FETCH_OBJ) as $obj) {
                 $this->auxPlay = new clsPlaylistTrack();
+                $this->auxPlay->__set('TrackId', $obj->TrackId);
                 $this->auxPlay->__set('TrackName', $obj->cancion);
                 $this->auxPlay->__set('PlaylistName', $obj->playlist);
+                $this->auxPlay->__set('PlaylistId', $obj->PlaylistId);
                 $resultado[] = $this->auxPlay;
             }
 
@@ -138,6 +140,15 @@ class clsServicePlaylist{
                 $obj->PlaylistId,
                 $obj->TrackId
             ));
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function SacarPlayTrack($PlaylistId, $TrackId) {
+        try {
+            $consulta = $this->auxPlay->prepare("DELETE FROM playlisttrack WHERE PlaylistId=? AND TrackId=?");
+            $consulta->execute(array($PlaylistId,$TrackId));
         } catch (Exception $e) {
             die($e->getMessage());
         }

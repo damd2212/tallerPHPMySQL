@@ -76,4 +76,9 @@ class controladorPlaylist {
         header("Location: cntrlGeneral.php?c=tracks&a=Listar"); 
     }
 
+    public function SacarPlay(){
+        $this->ServicePlaylist->SacarPlayTrack($_REQUEST['PlaylistId'],$_REQUEST['TrackId']);
+        header('Location: cntrlGeneral.php?c=playlist&a=ListarPlaylistTrack');
+    }
+
 }

@@ -59,11 +59,11 @@
                         <td><?php echo $objPlaylist->PlaylistId ?></td>
                         <td><?php echo $objPlaylist->Name ?></td>
                         <td>
-                          <a href="?c=playlist&a=FormularioUpdate&PlaylistId=<?php echo $objPlaylist->PlaylistId ?>">Editar</a>
+                          <a href="?c=playlist&a=FormularioUpdate&PlaylistId=<?php echo $objPlaylist->PlaylistId ?>"><img src="../imagenes/img4.png">Editar</a>
                         </td>
                         <td>
                           <a onclick="javascript: return confirm('\¿Esta seguro de eliminar esta Playlist?');"
-                            href="?c=playlist&a=Eliminar&PlaylistId=<?php echo $objPlaylist->PlaylistId ?>">Eliminar</a>
+                            href="?c=playlist&a=Eliminar&PlaylistId=<?php echo $objPlaylist->PlaylistId ?>"><img src="../imagenes/img5.png">Eliminar</a>
                         </td>
                         
                     </tr>                        

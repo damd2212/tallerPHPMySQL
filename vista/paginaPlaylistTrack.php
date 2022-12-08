@@ -55,7 +55,7 @@
                         <td><?php echo $objPT->PlaylistName ?></td>
                         <td><?php echo $objPT->TrackName ?></td>
                         <td>
-                          <a href="?c=playlist&a=Eliminar&PlaylistId">Eliminar</a>
+                          <a href="?c=playlist&a=SacarPlay&PlaylistId=<?php echo $objPT->PlaylistId ?>&TrackId=<?php echo $objPT->TrackId ?>"><img src="../imagenes/img5.png">Eliminar</a>
                         </td>                        
                     </tr>                        
                 <?php endforeach ?>
