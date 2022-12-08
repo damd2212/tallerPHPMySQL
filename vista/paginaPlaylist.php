@@ -9,37 +9,42 @@
 
 </head>
 <body>
-    <br>
-    <div class="card" style="width: 20rem; margin-left: auto;margin-right: auto">
-        <h5 style="text-align:center ;"> Registrar Playlist</h5>
 
-        <div style="text-align: center;" class="card-body">
-            <form action="guadar_cancion.php" method="POST">
-                <div class="form-group">
-                    <label for="lidPlaylist">Id Playlist</label>
-                    <input type="number" class="form-control" id="PlaylistId" name="PlaylistId"
-                        placeholder="Ingrese el id de la playlist" />
-                </div>
-
-                <div class="form-group">
-                    <label for="lName">Nombre de la playlist</label>
-                    <input type="text" class="form-control" id="Name" name="Name"
-                        placeholder="Ingrese el nombre de la playlist" />
-                </div>
-
-                <br>
-                <button type="submit" class="btn btn-primary">Guardar Playlist</button>
-            </form>
-        </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="cerrarSesion.php">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="?c=playlist&a=Listar">Playlist</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
     </div>
+  </nav>
     <br>
+    
+    
+    <h4 style="text-align:center;">Lista de Playlist</h4>
+    <br>
+    <h5 style="text-align: center;">
+        <a href="?c=playlist&a=Formulario"><img src="../imagenes/img6.png">Nueva Playlist</a>
+      </h5>
     <div class="card" style="width: 50rem; margin-left: auto;margin-right: auto">
+      
         <table class="table table-hover">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th scope="col">Id Cancion</th>
                     <th scope="col">Nombre Cancion</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,9 +52,14 @@
                     <tr>
                         <td><?php echo $objPlaylist->PlaylistId ?></td>
                         <td><?php echo $objPlaylist->Name ?></td>
-                        <td><a href="editar_tarea.php?id=<?php echo $fila['id_tarea'] ?>">Editar</a>
-                            <a href="eliminar_tarea.php?id=<?php echo $fila['id_tarea'] ?>">Eliminar</a>
+                        <td>
+                          <a href="?c=playlist&a=FormularioUpdate&PlaylistId=<?php echo $objPlaylist->PlaylistId ?>">Editar</a>
                         </td>
+                        <td>
+                          <a onclick="javascript: return confirm('\¿Esta seguro de eliminar esta Playlist?');"
+                            href="?c=playlist&a=Eliminar&PlaylistId=<?php echo $objPlaylist->PlaylistId ?>">Eliminar</a>
+                        </td>
+                        
                     </tr>                        
                 <?php endforeach ?>
             </tbody>

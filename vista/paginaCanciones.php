@@ -26,7 +26,7 @@
           <a class="nav-link active" href="cerrarSesion.php">Active</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="?c=playlist&a=Listar">Playlist</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
