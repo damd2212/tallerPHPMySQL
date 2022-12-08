@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 </head>
-<body>
+<body background="../imagenes/fondo.jpg">
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
@@ -37,7 +37,7 @@
     <br>
     
     
-    <h4 style="text-align:center;">Lista de Playlist</h4>
+    <h4 style="text-align:center; color: white;">Lista de Playlist</h4>
     <br>
     <h5 style="text-align: center;">
         <a href="?c=playlist&a=Formulario"><img src="../imagenes/img6.png">Nueva Playlist</a>
