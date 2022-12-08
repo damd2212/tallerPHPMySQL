@@ -14,19 +14,22 @@
     <div class="container-fluid">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="cerrarSesion.php">Active</a>
+          <a class="nav-link" href="?c=tracks&a=Listar">Mis Canciones</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="?c=playlist&a=Listar">Playlist</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active" href="?c=playlist&a=ListarPlaylistTrack">Playlist con canciones</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="?c=tracks&a=ListarNoCompradas">Comprar canción</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cerrarSesion.php">Cerrar Sesión</a>
         </li>
       </ul>
     </div>

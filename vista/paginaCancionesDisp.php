@@ -10,10 +10,10 @@
     .inicio{
     margin: 10px;
     background-color: #f6f6ff;
-    width: 78%;
+    width: 82%;
     position: absolute;
-    top: 10%;
-  left: 10%;
+    top: 9%;
+  left: 9%;
   }          
   </style>
 </head>
@@ -23,16 +23,22 @@
     <div class="container-fluid">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="cerrarSesion.php">Active</a>
+          <a class="nav-link" href="?c=tracks&a=Listar">Mis Canciones</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?c=tracks&a=Listar">Playlist</a>
+          <a class="nav-link" href="?c=playlist&a=Listar">Playlist</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="?c=playlist&a=ListarPlaylistTrack">Playlist con canciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="?c=tracks&a=ListarNoCompradas">Comprar canción</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cerrarSesion.php">Cerrar Sesión</a>
         </li>
       </ul>
     </div>
@@ -57,7 +63,6 @@
                 <td><?php echo $objTrack->UnitPrice ?></td>
                 <td><a href="?c=tracks&a=Comprar&Id=<?php echo $objTrack->TrackId;?>"><img src="../imagenes/shopping-cart.png">Comprar</a></td>
               </tr>
-
             <?php endforeach ?>
           </tbody>
         </table>
