@@ -14,4 +14,14 @@ class controladorTracks {
         require_once '../vista/paginaCanciones.php';
     }
 
+    public function ListarNoCompradas(){
+        require_once '../vista/paginaCancionesDisp.php';
+    }
+
+    public function Comprar(){
+        $this->ServiceTracks->Comprar($_REQUEST['Id']);
+        header('Location: cntrlGeneral.php?c=tracks&a=Listar');
+    }
+    
+
 }

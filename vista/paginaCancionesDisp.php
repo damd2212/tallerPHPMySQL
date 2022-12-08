@@ -26,10 +26,10 @@
           <a class="nav-link active" href="cerrarSesion.php">Active</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?c=playlist&a=Listar">Playlist</a>
+          <a class="nav-link" href="?c=tracks&a=Listar">Playlist</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?c=tracks&a=ListarNoCompradas">Comprar canción</a>
+          <a class="nav-link" href="#">Link</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
@@ -45,17 +45,20 @@
               <th scope="col">Compositor</th>
               <th scope="col">Duración</th>
               <th scope="col">Precio Unitario</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($this->ServiceTracks->Listar() as $objTrack) : ?>
+            <?php foreach ($this->ServiceTracks->ListarNoCompradas() as $objTrack) : ?>
               <tr>
               <td><?php echo $objTrack->TrackId ?></td>
                 <td><?php echo $objTrack->Name ?></td>
                 <td><?php echo $objTrack->Composer ?></td>
                 <td><?php echo $objTrack->Milliseconds ?></td>
                 <td><?php echo $objTrack->UnitPrice ?></td>
+                <td><a href="?c=tracks&a=Comprar&Id=<?php echo $objTrack->TrackId;?>"><img src="../imagenes/shopping-cart.png">Comprar</a></td>
               </tr>
+
             <?php endforeach ?>
           </tbody>
         </table>

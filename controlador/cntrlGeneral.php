@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*este es para redirigir un controlador*/
 if(isset($_REQUEST['c']))
 {
