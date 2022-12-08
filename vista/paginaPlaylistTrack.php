@@ -37,7 +37,7 @@
     <br>
     
     
-    <h4 style="text-align:center;">Lista de Playlist con susu canciones</h4>
+    <h4 style="text-align:center;">Lista de Playlist con sus canciones</h4>
     <br>
     <div class="card" style="width: 50rem; margin-left: auto;margin-right: auto">
       
@@ -46,13 +46,17 @@
                 <tr>
                     <th scope="col">Nombre playlist</th>
                     <th scope="col">Nombre Cancion</th>
+                    <th scope="col">Eliminar relacion</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($this->ServicePlaylist->ListaPlaylistTrack() as $objPT): ?>                        
                     <tr>
                         <td><?php echo $objPT->PlaylistName ?></td>
-                        <td><?php echo $objPT->TrackName ?></td>                        
+                        <td><?php echo $objPT->TrackName ?></td>
+                        <td>
+                          <a href="?c=playlist&a=Eliminar&PlaylistId">Eliminar</a>
+                        </td>                        
                     </tr>                        
                 <?php endforeach ?>
             </tbody>

@@ -4,6 +4,7 @@ require_once '../modelo/clsPlaylist.php';
 require_once '../modelo/conexion_db.php';
 require_once '../modelo/clsPlaylistTrack.php';
 require_once '../modelo/clsConteoPT.php';
+require_once '../modelo/clsIDplaylistTrack.php';
 
 class clsServicePlaylist{
     //atributos
@@ -129,5 +130,17 @@ class clsServicePlaylist{
         }
     }
 
+
+    public function Asociar(clsIDplaylistTrack $obj) {
+        try {
+            $consulta = "INSERT INTO playlisttrack (PlaylistId,TrackId) VALUES (?,?)";
+            $this->auxPlay->prepare($consulta)->execute(array(
+                $obj->PlaylistId,
+                $obj->TrackId
+            ));
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 
 }

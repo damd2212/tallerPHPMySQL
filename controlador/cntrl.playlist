@@ -30,6 +30,11 @@ class controladorPlaylist {
         require_once '../vista/FormEditarPlaylist.php';
     }
 
+    public function FormularioAsociacion(){
+        $idCancion = $_REQUEST['Id'];
+        require_once '../vista/FormAgregarCancionPlaylist.php';
+    }
+
     public function Guardar(){
         $obj = new clsPlaylist();
         $obj->PlaylistId = $_REQUEST['PlaylistId'];
@@ -59,6 +64,16 @@ class controladorPlaylist {
 
     public function Conteo(){
         require_once '../vista/paginaConteoPT.php';
+    }
+
+    public function Asociar(){
+        $obj = new clsIDplaylistTrack();
+        $obj->PlaylistId = $_REQUEST['PlaylistId'];
+        $obj->TrackId = $_REQUEST['TrackId'];
+
+        $this->ServicePlaylist->Asociar($obj);
+
+        header("Location: cntrlGeneral.php?c=tracks&a=Listar"); 
     }
 
 }

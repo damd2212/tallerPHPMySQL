@@ -9,23 +9,54 @@
     
 </head>
 <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="?c=tracks&a=Listar">Mis Canciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?c=playlist&a=Listar">Playlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?c=playlist&a=ListarPlaylistTrack">Playlist con canciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?c=tracks&a=ListarNoCompradas">Comprar canción</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?c=playlist&a=Conteo">Conteo Canciones por Playlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cerrarSesion.php">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <br>
     <div class="card" style="width: 20rem; margin-left: auto;margin-right: auto">
         <h5 style="text-align:center ;">
-            Registrar Playlist
+            Agregar cancion a playlist
         </h5>
 
         <div style="text-align: center;" class="card-body">
-            <form action="?c=playlist&a=Guardar" method="POST">
+            <form action="?c=playlist&a=Asociar" method="POST">
                 <div class="form-group">
-                    <label for="lidPlaylist">Id Playlist</label>
-                    <input type="number" class="form-control" id="PlaylistId" name="PlaylistId" placeholder="Ingrese el id de la playlist"/>                        
+                    <label for="lidPlaylist">Id de la cancion</label>
+                    <input type="number" class="form-control" id="TrackId" name="TrackId" readonly value="<?php echo $idCancion; ?>" placeholder="Ingrese el id cancion"/>                        
                 </div>
 
                 <div class="form-group">
-                    <label for="lName">Nombre de la playlist</label>
-                    <input type="text" class="form-control" id="Name" name="Name"
-                        placeholder="Ingrese el nombre de la playlist" />
+                    <label for="lGenre">Playlist</label><br>
+                    <select class="form-select" id="PlaylistId" name="PlaylistId">
+                        <option value="0">Seleccione una opcion</option>
+                        <?php
+                        
+                            foreach( $this->ServicePlaylist->Listar() as $objP){
+                                echo '<option value="'.$objP->PlaylistId.'">'.$objP->Name.'</option>';
+                            } 
+                        ?>
+                    </select>
                 </div>
 
                 <br>
