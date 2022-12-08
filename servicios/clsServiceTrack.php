@@ -26,7 +26,7 @@ class clsServiceTrack{
             $this->auxTrack->__set('Name', $obj->Name);
             $this->auxTrack->__set('Composer', $obj->Composer);
             $this->auxTrack->__set('Milliseconds', $obj->Milliseconds);
-            $this->auxTrack->__set('UnitPrice', $obj->Milliseconds);
+            $this->auxTrack->__set('UnitPrice', $obj->UnitPrice);
             $resultado [] = $this->auxTrack;
         }
         return $resultado;

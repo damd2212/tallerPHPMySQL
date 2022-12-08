@@ -5,7 +5,7 @@
   <title>Lista de productos</title>
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="Estilos/estilos.css"/>
+  <link rel="stylesheet" href="../Estilos/estilos.css"/>
   <style>
     .inicio{
     margin: 10px;
@@ -18,7 +18,7 @@
   </style>
 </head>
 
-<body background="imagenes/fondo.jpg">
+<body background="../imagenes/fondo.jpg">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
       <ul class="navbar-nav">
