@@ -1,7 +1,5 @@
 <?php
 
-use LDAP\Result;
-
 require_once '../modelo/clsTracks.php';
 require_once '../modelo/conexion_db.php';
 
