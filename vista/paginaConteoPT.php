@@ -14,7 +14,7 @@
     <div class="container-fluid">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="cerrarSesion.php">Active</a>
+          <a class="nav-link" href="?c=tracks&a=Listar">Mis Canciones</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="?c=playlist&a=Listar">Playlist</a>
@@ -29,7 +29,7 @@
           <a class="nav-link active" href="?c=playlist&a=Conteo">Conteo Canciones por Playlist</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <a class="nav-link" href="cerrarSesion.php">Cerrar Sesión</a>
         </li>
       </ul>
     </div>
