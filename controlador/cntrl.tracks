@@ -28,7 +28,6 @@ class controladorTracks {
             echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "La canción se compró correctamente"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
         }
         require_once '../vista/paginaCancionesDisp.php';
-        //header('Location: cntrlGeneral.php?c=tracks&a=ListarNoCompradas');
     }
 
     public function Eliminar(){

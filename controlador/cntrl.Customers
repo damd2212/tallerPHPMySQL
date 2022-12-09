@@ -31,7 +31,7 @@ class controladorCustomers{
                 $controlador = new $controlador;
                 $controlador->Listar(); 
             }else{
-                echo "Credenciales incorrectas";
+            echo "Credenciales Incorrectas";
             }
         }
     }
