@@ -61,8 +61,15 @@ class controladorPlaylist {
     }
 
     public function Eliminar(){
-        $this->ServicePlaylist->Eliminar($_REQUEST['PlaylistId']);
-        header('Location: cntrlGeneral.php?c=playlist&a=Listar');
+        $result = $this->ServicePlaylist->Eliminar($_REQUEST['PlaylistId']);
+        if($result!=Null){
+            echo '<div class="alert alert-danger" id="demo"><strong>Success!</strong> Indicates a successful or positive action.</div>';
+            echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "'.$result.'"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
+        }else{
+            echo '<div class="alert alert-success" id="demo"><strong>Success!</strong> Indicates a successful or positive action.</div>';
+            echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "Playlist eliminada correctamente"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
+        }
+        require_once '../vista/paginaPlaylist.php';
     }
 
     public function ListarPlaylistTrack(){

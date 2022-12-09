@@ -74,12 +74,22 @@ class clsServicePlaylist{
     }
 
     public function Eliminar($PlaylistId) {
+        $respuesta = Null;
         try {
             $consulta = $this->auxPlay->prepare("DELETE FROM Playlist WHERE PlaylistId=?");
             $consulta->execute(array($PlaylistId));
+            $result = $consulta->rowCount();
+            if($result<=0){
+                throw new Exception("El Id de la Playlist no se encuentra registrada", 10001);
+            }
         } catch (Exception $e) {
-            die($e->getMessage());
+            $code = $e->getCode();
+            $message = $e->getMessage();
+            $file = $e->getFile();
+            $line = $e->getLine();
+            $respuesta = "Exception thrown in ".$file." on line ".$line.": [Code ".$code."] ".$message;
         }
+        return $respuesta;
     }
 
     public function ListaPlaylistTrack(){
