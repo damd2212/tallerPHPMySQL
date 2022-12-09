@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formuario Playlist</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="../Estilos/errors.css"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -40,7 +40,7 @@
         </h5>
 
         <div style="text-align: center;" class="card-body">
-            <form action="?c=playlist&a=Guardar" method="POST">
+            <form action="?c=playlist&a=Guardar" method="POST" id="form_createplaylist">
                 <div class="form-group">
                     <label for="lidPlaylist">Id Playlist</label>
                     <input type="number" class="form-control" id="PlaylistId" name="PlaylistId" placeholder="Ingrese el id de la playlist"/>                        
@@ -53,9 +53,28 @@
                 </div>
 
                 <br>
-                <button type="submit" class="btn btn-primary">Guardar Playlist</button>
+                <input class="styled" type="button" value="Guardar Playlist" onclick="validar()">
             </form>
+            <script>    
+              function validar(){
+                let id = document.getElementById("PlaylistId");
+                let nombre = document.getElementById("Name");
+                if (id.value == '') {
+                  alert('Debe ingresar el id');
+                  id.focus();   
+                  return;
+                }
+                if (nombre.value == '') {
+                  alert('Debe ingresar el nombre');
+                  nombre.focus();   
+                  return;
+                }
+                document.forms[0].submit();
+              }
+            </script>
         </div>
     </div>
+
+    
 </body>
 </html>
