@@ -6,6 +6,7 @@
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="../Estilos/estilos.css"/>
+  <script type="text/javascript" src="../Js/jquery.js"></script> 
   <style>
     .inicio{
     margin: 10px;
@@ -42,8 +43,8 @@
         </li>
       </ul>
     </div>
-  </nav>
-  <div class="inicio">
+  </nav><br>
+  <div class="card" style="width: 90rem; margin-left: auto;margin-right: auto">
         <table class="table table-hover">
           <thead class="table-dark">
             <tr>
@@ -67,8 +68,7 @@
             <?php endforeach ?>
           </tbody>
         </table>
-</div>
-
+  </div>
 
 </body>
 

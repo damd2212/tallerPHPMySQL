@@ -19,13 +19,28 @@ class controladorTracks {
     }
 
     public function Comprar(){
-        $this->ServiceTracks->Comprar($_REQUEST['Id']);
-        header('Location: cntrlGeneral.php?c=tracks&a=Listar');
+        $result = $this->ServiceTracks->Comprar($_REQUEST['Id']);
+        if($result!=Null){
+            echo '<div class="alert alert-danger" id="demo"><strong>Success!</strong> Indicates a successful or positive action.</div>';
+            echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "'.$result.'"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
+        }else{
+            echo '<div class="alert alert-success" id="demo"><strong>Success!</strong> Indicates a successful or positive action.</div>';
+            echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "La canción se compró correctamente"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
+        }
+        require_once '../vista/paginaCancionesDisp.php';
+        //header('Location: cntrlGeneral.php?c=tracks&a=ListarNoCompradas');
     }
 
     public function Eliminar(){
-        $this->ServiceTracks->EliminarCompra($_REQUEST['Id']);
-        header('Location: cntrlGeneral.php?c=tracks&a=Listar');
+        $result = $this->ServiceTracks->EliminarCompra($_REQUEST['Id']);
+        if($result!=Null){
+            echo '<div class="alert alert-danger" id="demo"><strong>Success!</strong> Indicates a successful or positive action.</div>';
+            echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "'.$result.'"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
+        }else{
+            echo '<div class="alert alert-success" id="demo"><strong>Success!</strong> Indicates a successful or positive action.</div>';
+            echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "La canción se eliminó correctamente"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
+        }
+            require_once '../vista/paginaCanciones.php';
     }
     
 

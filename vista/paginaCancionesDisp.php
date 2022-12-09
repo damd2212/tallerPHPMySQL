@@ -6,6 +6,7 @@
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="../Estilos/estilos.css"/>
+  <script type="text/javascript" src="../Js/jquery.js"></script> 
   <style>
     .inicio{
     margin: 10px;
@@ -43,14 +44,15 @@
       </ul>
     </div>
   </nav>
-  <div class="inicio">
+  <br>
+  <div class="card" style="width: 90rem; margin-left: auto;margin-right: auto">
         <table class="table table-hover">
           <thead class="table-dark">
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Compositor</th>
               <th scope="col">Duración</th>
-              <th scope="col">Precio Unitario</th>
+              <th scope="col">Precio</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
@@ -67,8 +69,14 @@
           </tbody>
         </table>
 </div>
+    <script>
+      $('.add_compra').click(function(e){
+        e.preventDefault();
+        var Compra = $(this).attr('idCompra');
+        alert(Compra);
+      });
 
-
+    </script>
 </body>
 
 </html>
