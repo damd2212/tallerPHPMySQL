@@ -15,10 +15,11 @@ class controladorCustomers{
     
     public function inicio(){
         $controlador = 'tracks';
-        $user = $_POST['user'];
-        $pass = $_POST['pass'];
-        if (!isset($_SESSION['user'])) {
-            
+        if (!isset($_SESSION['user']) && !isset($_POST['user']) && !isset($_POST['pass'])) {
+            header('Location: http://localhost/tallerPHPMySQL/index.php');
+        }else{
+            $user = $_POST['user'];
+            $pass = $_POST['pass'];
             $usuario = new clsServiceCustomer();
             $resultadoUsuario = $usuario->validar($user, $pass);
             if($resultadoUsuario > 0)
@@ -29,27 +30,6 @@ class controladorCustomers{
                 $controlador = "controlador".$controlador;
                 $controlador = new $controlador;
                 $controlador->Listar(); 
-            }else{
-                echo "Credenciales incorrectas";
-            }
-        }else{
-            $customer = new clsServiceCustomer();
-            $resultadoCustomer = $customer->validar($user, $pass);
-            if($resultadoCustomer > 0)
-            {
-            if(isset($_REQUEST['c'])){
-                $controlador = $_REQUEST['c'];
-            $accion = isset($_REQUEST['a']) ? $_REQUEST['a'] : Listar();
-            require_once "../controlador/cntrl.$controlador";
-            $controlador = "controlador".$controlador;
-            $controlador = new $controlador;
-            call_user_func(array($controlador,$accion));    
-            }else{
-                require "../controlador/cntrl.$controlador";
-                $controlador = "controlador".$controlador;
-                $controlador = new $controlador;
-                $controlador->Listar();    
-            }
             }else{
                 echo "Credenciales incorrectas";
             }

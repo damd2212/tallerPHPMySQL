@@ -62,6 +62,7 @@ class clsServicePlaylist{
     }
 
     public function Actualizar(clsPlaylist $obj) {
+        $respuesta = Null;
         try {
             $consulta = "UPDATE Playlist SET Name=? WHERE PlaylistId=?";
             $this->auxPlay->prepare($consulta)->execute(array(
@@ -69,8 +70,13 @@ class clsServicePlaylist{
                 $obj->PlaylistId
             ));
         } catch (Exception $e) {
-            die($e->getMessage());
+            $code = $e->getCode();
+            $message = $e->getMessage();
+            $file = $e->getFile();
+            $line = $e->getLine();
+            $respuesta = "Exception thrown in ".$file." on line ".$line.": [Code ".$code."] ".$message;
         }
+        return $respuesta;
     }
 
     public function Eliminar($PlaylistId) {

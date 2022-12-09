@@ -56,8 +56,15 @@ class controladorPlaylist {
         $obj = new clsPlaylist();
         $obj->PlaylistId = $_REQUEST['PlaylistId'];
         $obj->Name = $_REQUEST['Name'];
-        $this->ServicePlaylist->Actualizar($obj);
-        header("Location: cntrlGeneral.php?c=playlist&a=Listar"); 
+        $result = $this->ServicePlaylist->Actualizar($obj);
+        if($result!=Null){
+            echo '<div class="alert alert-danger" id="demo"><strong>Success!</strong> Indicates a successful or positive action.</div>';
+            echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "'.$result.'"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
+        }else{
+            echo '<div class="alert alert-success" id="demo"><strong>Success!</strong> Indicates a successful or positive action.</div>';
+            echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "Playlist actualizada correctamente"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
+        }
+        require_once '../vista/paginaPlaylist.php';
     }
 
     public function Eliminar(){
