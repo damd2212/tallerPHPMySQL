@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formuario Playlist</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    
+
 </head>
+
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="?c=tracks&a=Listar"><?php
+                                                                            print_r("Bienvenido ");
+                                                                            print_r($_SESSION['FirstName']);
+                                                                            ?></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="?c=tracks&a=Listar">Mis Canciones</a>
                 </li>
@@ -43,7 +51,7 @@
             <form action="?c=playlist&a=Asociar" method="POST">
                 <div class="form-group">
                     <label for="lidPlaylist">Id de la cancion</label>
-                    <input type="number" class="form-control" id="TrackId" name="TrackId" readonly value="<?php echo $idCancion; ?>" placeholder="Ingrese el id cancion"/>                        
+                    <input type="number" class="form-control" id="TrackId" name="TrackId" readonly value="<?php echo $idCancion; ?>" placeholder="Ingrese el id cancion" />
                 </div>
 
                 <div class="form-group">
@@ -51,10 +59,10 @@
                     <select class="form-select" id="PlaylistId" name="PlaylistId">
                         <option value="0">Seleccione una opcion</option>
                         <?php
-                        
-                            foreach( $this->ServicePlaylist->Listar() as $objP){
-                                echo '<option value="'.$objP->PlaylistId.'">'.$objP->Name.'</option>';
-                            } 
+
+                        foreach ($this->ServicePlaylist->Listar() as $objP) {
+                            echo '<option value="' . $objP->PlaylistId . '">' . $objP->Name . '</option>';
+                        }
                         ?>
                     </select>
                 </div>
@@ -62,25 +70,26 @@
                 <br>
                 <input class="styled" type="button" value="Agregar Playlist" onclick="validar()">
             </form>
-            <script>    
-              function validar(){
-                let id = document.getElementById("TrackId");
-                let idplaylist = document.getElementById("PlaylistId");
-                if (id.value == '') {
-                  alert('Debe ingresar el id');
-                  id.focus();   
-                  return;
+            <script>
+                function validar() {
+                    let id = document.getElementById("TrackId");
+                    let idplaylist = document.getElementById("PlaylistId");
+                    if (id.value == '') {
+                        alert('Debe ingresar el id');
+                        id.focus();
+                        return;
+                    }
+                    if (idplaylist.value == 0) {
+                        alert('Debe seleccionar una de las playlist');
+                        idplaylist.focus();
+                        return;
+                    }
+                    document.forms[0].submit();
                 }
-                if (idplaylist.value == 0) {
-                  alert('Debe seleccionar una de las playlist');
-                  idplaylist.focus();   
-                  return;
-                }
-                document.forms[0].submit();
-              }
             </script>
 
         </div>
     </div>
 </body>
+
 </html>

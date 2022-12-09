@@ -4,6 +4,7 @@ require_once '../modelo/clsPlaylist.php';
 require_once '../modelo/conexion_db.php';
 require_once '../modelo/clsPlaylistTrack.php';
 require_once '../modelo/clsConteoPT.php';
+require_once '../modelo/clsIDplaylistTrack.php';
 
 class clsServicePlaylist{
     //atributos
@@ -102,22 +103,24 @@ class clsServicePlaylist{
         $customerId = $_SESSION['CustomerId'];
         try {
             
-            $consulta = $this->auxPlay->prepare("SELECT DISTINCT t.Name AS cancion, p.Name AS 'playlist' FROM customer c, invoice i, invoiceline il, track t, playlisttrack pt, playlist p
+            $consulta = $this->auxPlay->prepare("SELECT DISTINCT t.TrackId ,t.Name AS cancion, p.PlaylistId,p.Name AS 'playlist' FROM customer c, invoice i, invoiceline il, track t, playlisttrack pt, playlist p
                 WHERE c.CustomerId = i.CustomerId
                 AND i.InvoiceId = il.InvoiceId
                 AND il.TrackId = t.TrackId
                 AND pt.TrackId = t.TrackId
                 AND p.PlaylistId = pt.PlaylistId
                 AND c.CustomerId=?
-                ORDER BY p.Name");
+                ORDER BY p.PlaylistId");
             $consulta->execute(array($customerId));
 
             $resultado = array();
 
             foreach ($consulta->fetchAll(PDO::FETCH_OBJ) as $obj) {
                 $this->auxPlay = new clsPlaylistTrack();
+                $this->auxPlay->__set('TrackId', $obj->TrackId);
                 $this->auxPlay->__set('TrackName', $obj->cancion);
                 $this->auxPlay->__set('PlaylistName', $obj->playlist);
+                $this->auxPlay->__set('PlaylistId', $obj->PlaylistId);
                 $resultado[] = $this->auxPlay;
             }
 
@@ -151,5 +154,25 @@ class clsServicePlaylist{
         }
     }
 
+    public function Asociar(clsIDplaylistTrack $obj) {
+        try {
+            $consulta = "INSERT INTO playlisttrack (PlaylistId,TrackId) VALUES (?,?)";
+            $this->auxPlay->prepare($consulta)->execute(array(
+                $obj->PlaylistId,
+                $obj->TrackId
+            ));
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function SacarPlayTrack($PlaylistId, $TrackId) {
+        try {
+            $consulta = $this->auxPlay->prepare("DELETE FROM playlisttrack WHERE PlaylistId=? AND TrackId=?");
+            $consulta->execute(array($PlaylistId,$TrackId));
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 
 }
