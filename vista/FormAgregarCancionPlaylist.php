@@ -60,8 +60,26 @@
                 </div>
 
                 <br>
-                <button type="submit" class="btn btn-primary">Guardar Playlist</button>
+                <input class="styled" type="button" value="Agregar Playlist" onclick="validar()">
             </form>
+            <script>    
+              function validar(){
+                let id = document.getElementById("TrackId");
+                let idplaylist = document.getElementById("PlaylistId");
+                if (id.value == '') {
+                  alert('Debe ingresar el id');
+                  id.focus();   
+                  return;
+                }
+                if (idplaylist.value == 0) {
+                  alert('Debe seleccionar una de las playlist');
+                  idplaylist.focus();   
+                  return;
+                }
+                document.forms[0].submit();
+              }
+            </script>
+
         </div>
     </div>
 </body>
