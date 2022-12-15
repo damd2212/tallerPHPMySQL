@@ -79,6 +79,11 @@ class clsServiceTrack
             $track = $consulta->fetch(PDO::FETCH_ASSOC);
             $result = $consulta->rowCount();
 
+            //consultamos el id siguiente a guardar de la cancion
+            $consulta = $this->auxTrack->prepare("SELECT TrackId FROM track ORDER BY TrackId DESC LIMIT 1");
+            $consulta->execute();
+            $datoObtenido = $consulta->fetch(PDO::FETCH_ASSOC);
+            $result2 = $consulta->rowCount();
 
             //consultamos el id siguiente a guardar de invoice
             $consulta = $this->auxTrack->prepare("SELECT InvoiceId FROM invoice ORDER BY InvoiceId DESC LIMIT 1");
@@ -92,7 +97,7 @@ class clsServiceTrack
             $datoObtenido3 = $consulta->fetch(PDO::FETCH_ASSOC);
             $result4 = $consulta->rowCount();
 
-            if ($result > 0 && $result3 > 0 && $result4 > 0) {
+            if ($result > 0 && $result2 > 0 && $result3 > 0 && $result4 > 0) {
                 //registramos la factura general
                 $consulta = "INSERT INTO invoice (InvoiceId,CustomerId,InvoiceDate,BillingAddress,BillingCity,BillingCountry,Total) VALUES (?,?,?,?,?,?,?)";
                 $this->auxTrack->prepare($consulta)->execute(array(
