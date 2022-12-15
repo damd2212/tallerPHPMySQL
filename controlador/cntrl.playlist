@@ -22,9 +22,12 @@ class controladorPlaylist {
 
     public function FormularioUpdate(){
         $obj = new clsPlaylist();
-
         if(isset($_REQUEST['PlaylistId'])){
             $obj = $this->ServicePlaylist->Obtener($_REQUEST['PlaylistId']);
+            if($obj->Name==""){
+                echo '<div class="alert alert-danger" id="demo"><strong>Success!</strong> Indicates a successful or positive action.</div>';
+                echo '<script type="text/javascript">document.getElementById("demo").innerHTML = "Playlist no encontrada"; const value = document.getElementById("demo"); setTimeout(() => { value.parentNode.removeChild(value); }, 5000);</script>';
+            }
         }
 
         require_once '../vista/FormEditarPlaylist.php';

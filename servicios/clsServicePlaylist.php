@@ -37,7 +37,7 @@ class clsServicePlaylist{
         $consulta = $this->auxPlay->prepare ("SELECT * FROM Playlist WHERE PlaylistId=?");
         $consulta->execute(array($PlaylistId));
         $auxPlaylist = new clsPlaylist();
-        foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj) {
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj) {
                 $auxPlaylist->__SET('PlaylistId', $obj->PlaylistId);
                 $auxPlaylist->__SET('Name', $obj->Name);
             }
@@ -102,7 +102,6 @@ class clsServicePlaylist{
     public function ListaPlaylistTrack(){
         $customerId = $_SESSION['CustomerId'];
         try {
-            
             $consulta = $this->auxPlay->prepare("SELECT DISTINCT t.TrackId ,t.Name AS cancion, p.PlaylistId,p.Name AS 'playlist' FROM customer c, invoice i, invoiceline il, track t, playlisttrack pt, playlist p
                 WHERE c.CustomerId = i.CustomerId
                 AND i.InvoiceId = il.InvoiceId
@@ -155,6 +154,7 @@ class clsServicePlaylist{
     }
 
     public function Asociar(clsIDplaylistTrack $obj) {
+        $respuesta = null;
         try {
             $consulta = "INSERT INTO playlisttrack (PlaylistId,TrackId) VALUES (?,?)";
             $this->auxPlay->prepare($consulta)->execute(array(
@@ -162,8 +162,13 @@ class clsServicePlaylist{
                 $obj->TrackId
             ));
         } catch (Exception $e) {
-            die($e->getMessage());
+            $code = $e->getCode();
+            $message = $e->getMessage();
+            $file = $e->getFile();
+            $line = $e->getLine();
+            $respuesta = "Exception thrown in ".$file." on line ".$line.": [Code ".$code."] ".$message;
         }
+        return $respuesta;
     }
 
     public function SacarPlayTrack($PlaylistId, $TrackId) {

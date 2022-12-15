@@ -43,6 +43,8 @@ class clsServiceTrack
         $consulta = $this->auxTrack->prepare("SELECT * FROM (SELECT tr.TrackId FROM customer cus, invoice inv, invoiceline invl, track tr WHERE cus.CustomerId = inv.CustomerId AND inv.InvoiceId = invl.InvoiceId AND invl.TrackId = tr.TrackId AND cus.CustomerId = ?) AS sq RIGHT JOIN track tra  ON tra.TrackId = sq.TrackId WHERE sq.TrackId IS NULL");
         $consulta->execute(array($CustomerId));
         $result = $consulta->rowCount();
+        $resultado = null;
+        try{
         if($result > 0){
             $resultado = array();
             foreach ($consulta->fetchAll(PDO::FETCH_OBJ) as $obj) {
@@ -53,9 +55,16 @@ class clsServiceTrack
                 $this->auxTrack->__set('Milliseconds', $obj->Milliseconds);
                 $this->auxTrack->__set('UnitPrice', $obj->UnitPrice);
                 $resultado[] = $this->auxTrack;
+                }
+            } else {
+                throw new Exception("No hay canciones para comprar", 10004);
             }
-        } else {
-            throw new Exception("No hay canciones para comprar", 10004);
+        } catch (Exception $e) {
+            $code = $e->getCode();
+            $message = $e->getMessage();
+            $file = $e->getFile();
+            $line = $e->getLine();
+            $resultado = "Exception thrown in ".$file." on line ".$line.": [Code ".$code."] ".$message;
         }
         return $resultado;
     }

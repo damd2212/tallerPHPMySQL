@@ -16,7 +16,7 @@ class controladorCustomers{
     public function inicio(){
         $controlador = 'tracks';
         if (!isset($_SESSION['user']) && !isset($_POST['user']) && !isset($_POST['pass'])) {
-            header('Location: http://localhost/tallerPHPMySQL/index.php');
+            header('Location: http://localhost/tallerPHPMySQL/index.php?mensajeError');
         }else{
             $user = $_POST['user'];
             $pass = $_POST['pass'];
@@ -31,7 +31,9 @@ class controladorCustomers{
                 $controlador = new $controlador;
                 $controlador->Listar(); 
             }else{
-            echo "Credenciales Incorrectas";
+                //echo "Credenciales Incorrectas";
+                header("Location: ../index.php?mensajeLogin");
+                
             }
         }
     }
