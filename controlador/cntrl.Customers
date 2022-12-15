@@ -3,7 +3,6 @@ require ('../servicios/clsServiceCustomer.php');
 /**
  * Description of cntrl
  *
- * @author jefer
  */
 class controladorCustomers{
     /*//atributos
@@ -12,14 +11,16 @@ class controladorCustomers{
     public function __construct(){
         $this->$servicioCustomer = new clsServiceCustomer();
     }*/
-    
+    //creamos la sesión a partir de el formulario de login
     public function inicio(){
         $controlador = 'tracks';
+        //validamos si un usuario intenta ingresar desde la url a una pagina sin iniciar sesion 
         if (!isset($_SESSION['user']) && !isset($_POST['user']) && !isset($_POST['pass'])) {
             header('Location: http://localhost/tallerPHPMySQL/index.php?mensajeError');
         }else{
             $user = $_POST['user'];
             $pass = $_POST['pass'];
+            //consultamos desde el servicio si el usuario existe
             $usuario = new clsServiceCustomer();
             $resultadoUsuario = $usuario->validar($user, $pass);
             if($resultadoUsuario > 0)
@@ -31,9 +32,8 @@ class controladorCustomers{
                 $controlador = new $controlador;
                 $controlador->Listar(); 
             }else{
-                //echo "Credenciales Incorrectas";
+                //credenciales incorrectas
                 header("Location: ../index.php?mensajeLogin");
-                
             }
         }
     }
